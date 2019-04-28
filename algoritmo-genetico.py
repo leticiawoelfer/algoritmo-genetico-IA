@@ -5,10 +5,11 @@ Created on Wed Apr 24 20:57:25 2019
 @author: Douglas, Joana e Leticia
 """
 import random
+import matplotlib.pyplot as plt
 
 def criaMatrizCromossomos():
     #gerar uma matriz 20x20 de numero inteiro de 1 a 20
-    for x in range(0, 19):
+    for x in range(0, 20):
         linha = random.sample(range(1,21),20);
         matriz.append(linha);
     #print(matriz);
@@ -43,7 +44,16 @@ def criarMatrizValores():
 def criarListaDistancias():
     for linha in matrizValores:
         print(linha[1])
-    
+
+        
+
+
+plt.xlabel('Countries')
+plt.ylabel('Population in million')
+plt.title('Pakistan India Population till 2010')
+plt.plot(matrizValores)        
+plt.show()
+   
     
     
 matriz = [];
