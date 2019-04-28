@@ -21,7 +21,7 @@ def criarMatrizValores():
     for i in range(0, 20):
         x.append(round(random.uniform(0.0, 1.0),4))
         y.append(round(random.uniform(0.0, 1.0),4))
-    
+
     #gera a matriz numerica de 20x20 
     for linha in range(0, 20):
         line = []#limpa a var line sempre que for pra próxima linha
@@ -43,14 +43,15 @@ def criarMatrizValores():
     
 def criarListaDistancias():
     for linha in matrizValores:
-        print(linha[1])
+        listaDistancias.append(linha[1])
+        #print(linha[1])
 
         
 
 
-plt.xlabel('Countries')
-plt.ylabel('Population in million')
-plt.title('Pakistan India Population till 2010')
+plt.xlabel('Indivíduos')
+plt.ylabel('Aptidão')
+plt.title('Aptidão dos indivíduos')
 plt.plot(matrizValores)        
 plt.show()
    
