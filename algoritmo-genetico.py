@@ -44,16 +44,21 @@ def criarMatrizValores():
 def criarListaDistancias():
     for linha in matrizValores:
         listaDistancias.append(linha[1])
-        #print(linha[1])
-
+ 
         
 
 
-plt.xlabel('Indivíduos')
-plt.ylabel('Aptidão')
-plt.title('Aptidão dos indivíduos')
-plt.plot(matrizValores)        
-plt.show()
+
+
+
+
+
+#Gera grafico com os valores da função aptidão
+#plt.xlabel('Indivíduos')
+#plt.ylabel('Aptidão')
+#plt.title('Aptidão dos indivíduos')
+#plt.plot(matrizValores)        
+#plt.show()
    
     
     
