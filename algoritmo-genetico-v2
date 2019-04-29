@@ -1,0 +1,134 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Apr 28 16:02:21 2019
+
+@author: Douglas, Joana e Letícia
+"""
+from math import sqrt
+import random
+
+
+def calculaDistancia(cidade1, cidade2):
+
+    distancia = round(sqrt((cidade1[0]-cidade2[0])**2 + (cidade1[1]-cidade2[1])**2), 4)
+
+    if distancia < 0:
+        distancia = distancia * -1
+
+    return distancia
+
+def geraPontos():
+
+    vCidades = []
+    # monta as duas listas de numero aleatorios entre 0.0 e 1.0
+    for i in range(0, 20):
+        x = round(random.uniform(0.0, 1.0), 4)
+        y = round(random.uniform(0.0, 1.0), 4)
+        vCidades.append([x, y])
+
+    return vCidades
+
+def calculaCustoRota(rota, matrizDist):
+
+    custo = 0
+    i = 0
+    while i < len(rota) - 1 :
+
+        custo = custo + matrizDist[rota[i]-1][rota[i+1]-1]
+        i = i + 1
+
+    return round(custo, 4)
+
+def ordenaMatriz(matriz):
+
+    lineAux = []
+
+    for index in range(0, len(matriz)):
+        min_index = index
+
+        for right in range(index + 1, len(matriz)):
+            if matriz[right][20] < matriz[min_index][20]:
+                min_index = right
+
+        matriz[index], matriz[min_index] = matriz[min_index], matriz[index]
+
+
+    return matriz
+
+def geraDistancias(vCidades):
+
+    mDistancias = []
+
+    # gera a matriz numerica de 20x20
+    for linha in range(0, 20):
+        line = []  # limpa a var line sempre que for pra próxima linha
+
+        for coluna in range(0, 20):
+            #valor = 0
+            distancia =0
+            # print("linha ={0}".format(linha))
+            # print("coluna ={0}".format(coluna))
+            # print(type(linha));
+            # print(type(coluna));
+
+            if linha != coluna:
+                # print("x[{0}] - y[{1}]".format(linha, coluna))
+
+                #valor = round(x[linha] - y[coluna], 4)
+                distancia = calculaDistancia(vCidades[linha], vCidades[coluna])
+            else:
+                distancia = 0
+
+                # print("{0} - {1} = {2}".format(x[linha], y[coluna], valor))
+            # print("adiciona valor na line ={0}".format(valor))
+
+            line.append(distancia)
+            # print("adiciona valor na matrizValores ={0}".format(line))
+
+        mDistancias.append(line)
+    # print(matrizValores)
+
+    return mDistancias
+
+
+def geraCaminhos(mDistancias):
+
+
+    mCromossomos = []
+
+    # gerar uma matriz 20x20 de numero inteiro de 1 a 20
+    for x in range(0, 20):
+
+        linha = random.sample(range(1, 21), 20)
+
+        custo = calculaCustoRota(linha, mDistancias)
+        linha.append(custo)
+        mCromossomos.append(linha)
+
+    mCromossomos = ordenaMatriz(mCromossomos)
+
+    return mCromossomos
+
+def printMatriz(matrizPr):
+
+    tamanhoMt = len(matrizPr)
+    i = 0
+    while i < tamanhoMt:
+        print(matrizPr[i])
+        i = i+1
+
+
+vCidades = geraPontos()
+
+print(vCidades)
+print('\n')
+mDistancias = geraDistancias(vCidades)
+
+printMatriz(mDistancias)
+
+print('\n')
+mCromossomos = geraCaminhos(mDistancias)
+
+
+printMatriz(mCromossomos)
+
