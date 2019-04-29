@@ -5,8 +5,7 @@ Created on Wed Apr 24 20:57:25 2019
 @author: Douglas, Joana e Leticia
 """
 import random
-import matplotlib.pyplot as plt
-import numpy as np
+
 
 def criaMatrizPopulacao():
     #gerar uma matriz 20x20 de numero inteiro de 1 a 20
@@ -35,12 +34,15 @@ def criarMatrizDistancias():
 
 
 def criarListaDistancias():
-#  matrizCaixeiroViajante = np.array(matrizPopulacao)
-    
+
     for linha in range(0, 20):
         total=0
-        for coluna in range(0, 19):
-            total=total+(matrizDistancias[matrizPopulacao[linha][coluna]-1][matrizPopulacao[linha][coluna+1]-1])
+        for coluna in range(0, 20):
+            if coluna == 19:
+                total=total+(matrizDistancias[matrizPopulacao[linha][coluna]-1][matrizPopulacao[linha][0]-1])             
+            else:
+                total=total+(matrizDistancias[matrizPopulacao[linha][coluna]-1][matrizPopulacao[linha][coluna+1]-1])
+            
 
         listaDistancias.append(total)
 
@@ -70,7 +72,7 @@ def criarListaDistancias():
 matrizPopulacao = [];
 matrizDistancias = [];
 listaDistancias = [];
-matrizCaixeiroViajante = [];
+
 
 '''gerar matriz 20x20 de numeros inteiros'''
 criaMatrizPopulacao();
