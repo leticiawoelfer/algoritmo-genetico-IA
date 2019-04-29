@@ -5,7 +5,7 @@ Created on Wed Apr 24 20:57:25 2019
 @author: Douglas, Joana e Leticia
 """
 import random
-
+import matplotlib.pyplot as plt
 
 def criaMatrizPopulacao():
     #gerar uma matriz 20x20 de numero inteiro de 1 a 20
@@ -61,11 +61,11 @@ def criarListaDistancias():
 
 
 #Gera grafico com os valores da função aptidão
-#plt.xlabel('Indivíduos')
-#plt.ylabel('Aptidão')
-#plt.title('Aptidão dos indivíduos')
-#plt.plot(matrizValores)        
-#plt.show()
+plt.xlabel('Indivíduos')
+plt.ylabel('Aptidão')
+plt.title('Aptidão dos indivíduos')
+plt.plot(listaDistancias)        
+plt.show()
    
     
     
