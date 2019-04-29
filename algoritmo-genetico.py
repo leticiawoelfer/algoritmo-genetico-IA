@@ -6,16 +6,16 @@ Created on Wed Apr 24 20:57:25 2019
 """
 import random
 import matplotlib.pyplot as plt
-import math
+import numpy as np
 
-def criaMatrizCromossomos():
+def criaMatrizPopulacao():
     #gerar uma matriz 20x20 de numero inteiro de 1 a 20
     for i in range(0, 20):
         linha = random.sample(range(1,21),20);
-        matriz.append(linha);
+        matrizPopulacao.append(linha);
     #print(matriz);
     
-def criarMatrizValores():
+def criarMatrizDistancias():
     x = []
     y = []
     #monta as duas listas de numero aleatorios entre 0.0 e 1.0
@@ -23,28 +23,35 @@ def criarMatrizValores():
         x.append(round(random.uniform(0.0, 1.0),4))
         y.append(round(random.uniform(0.0, 1.0),4))
 
-    print(x)
-    print("\n")
-    print(y)
-
 
     #Gera matriz das distancias de cada cidade
     for linha in range(0, 20):
         line = []#limpa a var line sempre que for pra próxima linha
         for coluna in range(0, 20):
-#            valor = math.sqrt((x[linha]-x[coluna])^2+(y[linha]-y[coluna])^2)
             valor = round(((x[linha]-x[coluna])**2+(y[linha]-y[coluna])**2)**(1/2), 4)
             line.append(valor)
-        matrizValores.append(line)
-    
-    
-    
-def criarListaDistancias():
-    for linha in matrizValores:
-        listaDistancias.append(linha[1])
- 
-        
+        matrizDistancias.append(line)
 
+
+
+def criarListaDistancias():
+#  matrizCaixeiroViajante = np.array(matrizPopulacao)
+    
+    for linha in range(0, 20):
+        total=0
+        for coluna in range(0, 19):
+            total=total+(matrizDistancias[matrizPopulacao[linha][coluna]-1][matrizPopulacao[linha][coluna+1]-1])
+
+        listaDistancias.append(total)
+
+            
+#            print (str(matrizPopulacao[linha][coluna]-1) + ' ' + str(matrizPopulacao[linha][coluna+1]-1)) 
+            
+
+#        listaDistancias.append(10)
+#            valor = round(((x[linha]-x[coluna])**2+(y[linha]-y[coluna])**2)**(1/2), 4)
+            
+#        dist(i,1)=dist(i)+dcidade(tour(i,j),tour(i,j+1)); 
 
 
 
@@ -60,14 +67,15 @@ def criarListaDistancias():
    
     
     
-matriz = [];
-matrizValores = [];
+matrizPopulacao = [];
+matrizDistancias = [];
 listaDistancias = [];
+matrizCaixeiroViajante = [];
 
 '''gerar matriz 20x20 de numeros inteiros'''
-criaMatrizCromossomos();
+criaMatrizPopulacao();
 '''gerar matriz valorada de 20x21'''
-criarMatrizValores();
+criarMatrizDistancias();
 '''gerar a matriz com o calculo sa distancias'''
 criarListaDistancias();
 
