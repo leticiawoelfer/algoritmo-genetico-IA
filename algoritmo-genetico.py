@@ -78,7 +78,9 @@ def ordenaListadeResultados(desordenado):
     return ordenado
     
     
-    
+#Laço principal até 10.000 interações
+    for interacoes in range(0, 10000):
+        teste=interacoes
     
     
     
