@@ -6,7 +6,10 @@ Created on Wed Apr 24 20:57:25 2019
 """
 import random
 import matplotlib.pyplot as plt
-import numpy
+import numpy as np
+
+
+
 
 def criaMatrizPopulacao():
     #gerar uma matriz 20x20 de numero inteiro de 1 a 20
@@ -33,9 +36,9 @@ def criarMatrizDistancias():
 
 def criarListaDistancias():
     #Cria a lista com a soma das distancias das cidades
-    for linha in range(0, 20):
+    for linha in range(0, len(matrizPopulacao)):
         total=0#Limpa valor total a cada troca de individuo
-        for coluna in range(0, 20):
+        for coluna in range(0, len(matrizPopulacao[0])):
             if coluna == 19:#Condição para finalizar na cidade que iniciou
                 total=total+(matrizDistancias[matrizPopulacao[linha][coluna]-1][matrizPopulacao[linha][0]-1])             
             else:
@@ -48,17 +51,31 @@ def exibeResultados(resultados):
     plt.xlabel('Indivíduos')
     plt.ylabel('Aptidão')
     plt.title('Aptidão dos indivíduos')
-    plt.plot(resultados)        
+    plt.plot(resultados)
+    plt.axis([0, 100, 5, 15])
     plt.show()
+    
+    
+
+    #Exibe o tamanho da população na legenda
+    print ('Tamanho da população: '+ str(len(matrizPopulacao)))
+    
+    #Exibe taxa de mutação na legenda
+    print ('Taxa de mutação: '+ str(listaDistancias[ordenado[0][0]]))
+
+    #Exibe numero de cidades na legenda
+    print ('Numero de cidades: '+ str(len(matrizPopulacao[0])))
+    
+    #Exibe o melhor custo na legenda
+    print ('Melhor custo: '+ str(listaDistancias[ordenado[0][0]]))
+    
+    #Exibe a melhor solução na legenda
+    print ('Melhor solução: '+ str(matrizPopulacao[ordenado[0][0]]))
 
 def ordenaListadeResultados(desordenado):
     ordenado = [];
-    ordenado.append(numpy.argsort(desordenado))
+    ordenado.append(np.argsort(desordenado))
     return ordenado
-    
-    
-    
-    
     
     
     
@@ -80,8 +97,8 @@ criaMatrizPopulacao();
 criarMatrizDistancias();
 '''gerar a matriz com o calculo sa distancias'''
 criarListaDistancias();
+'''Ordenar um array retornando apenas o index'''
+ordenado = ordenaListadeResultados(listaDistancias)
 '''Exibe resultado em modo grafio'''
 exibeResultados(listaDistancias);
-'''Ordenar um array retornando apenas o index'''
-teste = ordenaListadeResultados(listaDistancias)
-print(teste)
+
