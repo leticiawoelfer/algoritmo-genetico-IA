@@ -8,7 +8,11 @@ import random
 import matplotlib.pyplot as plt
 import numpy as np
 
-
+#Variageis locais
+matrizPopulacao = []
+matrizDistancias = []
+listaDistancias = []
+distanciasOrdenadas = []
 
 
 def criaMatrizPopulacao():
@@ -16,7 +20,6 @@ def criaMatrizPopulacao():
     for i in range(0, 20):
         linha = random.sample(range(1,21),20);
         matrizPopulacao.append(linha);
-    #print(matriz);
     
 def criarMatrizDistancias():
     x = []
@@ -46,12 +49,12 @@ def criarListaDistancias():
         listaDistancias.append(total)
 
 
-def exibeResultados(resultados):
+def exibeResultados():
 #Gera grafico com os valores da função aptidão
     plt.xlabel('Indivíduos')
     plt.ylabel('Aptidão')
     plt.title('Aptidão dos indivíduos')
-    plt.plot(resultados)
+    plt.plot(listaDistancias)
     plt.axis([0, 100, 5, 15])
     plt.show()
     
@@ -61,26 +64,37 @@ def exibeResultados(resultados):
     print ('Tamanho da população: '+ str(len(matrizPopulacao)))
     
     #Exibe taxa de mutação na legenda
-    print ('Taxa de mutação: '+ str(listaDistancias[ordenado[0][0]]))
+    print ('Taxa de mutação: '+ str(listaDistancias[distanciasOrdenadas[0][0]]))
 
     #Exibe numero de cidades na legenda
     print ('Numero de cidades: '+ str(len(matrizPopulacao[0])))
     
     #Exibe o melhor custo na legenda
-    print ('Melhor custo: '+ str(listaDistancias[ordenado[0][0]]))
+    print ('Melhor custo: '+ str(listaDistancias[distanciasOrdenadas[0][0]]))
     
     #Exibe a melhor solução na legenda
-    print ('Melhor solução: '+ str(matrizPopulacao[ordenado[0][0]]))
+    print ('Melhor solução: '+ str(matrizPopulacao[distanciasOrdenadas[0][0]]))
 
-def ordenaListadeResultados(desordenado):
-    ordenado = [];
-    ordenado.append(np.argsort(desordenado))
-    return ordenado
+
+
+def ordenaMatrizDistancias():
+    matrizPopulacaoSort = []
+    matrizDistanciasSort = []
+    distanciasOrdenadas.append(np.argsort(listaDistancias))
+
+    for individuo in range(0,  20):
+        matrizPopulacaoSort.append(matrizPopulacao[distanciasOrdenadas[0][individuo]])
+        matrizDistanciasSort.append(matrizDistancias[distanciasOrdenadas[0][individuo]])
+
+#Não sei como colocar os valores de uma matriz na outra, não assim:        
+#    matrizDistancias = matrizDistanciasSort
+#    matrizPopulacao = matrizPopulacaoSort
+
     
     
 #Laço principal até 10.000 interações
-    for interacoes in range(0, 10000):
-        teste=interacoes
+#    for interacoes in range(0, 10000):
+#        teste=interacoes
     
     
     
@@ -88,9 +102,7 @@ def ordenaListadeResultados(desordenado):
     
     
     
-matrizPopulacao = [];
-matrizDistancias = [];
-listaDistancias = [];
+
 
 
 '''gerar matriz 20x20 de numeros inteiros'''
@@ -100,7 +112,7 @@ criarMatrizDistancias();
 '''gerar a matriz com o calculo sa distancias'''
 criarListaDistancias();
 '''Ordenar um array retornando apenas o index'''
-ordenado = ordenaListadeResultados(listaDistancias)
+ordenaMatrizDistancias()
 '''Exibe resultado em modo grafio'''
-exibeResultados(listaDistancias);
+exibeResultados();
 
