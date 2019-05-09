@@ -7,6 +7,7 @@ Created on Wed Apr 24 20:57:25 2019
 import random
 import matplotlib.pyplot as plt
 import numpy as np
+from random import randint
 
 #Variageis locais
 matrizPopulacao = []
@@ -115,23 +116,30 @@ def removerMetade():
     del listaDistancias[9:19]        
         
 
-
-
-#    Limpa as matrizes temporarias
-#    matrizDistanciasSort = []
-#    matrizPopulacaoSort =[]
-
-    
-#Não sei como colocar os valores de uma matriz na outra, não assim:        
-#   matrizDistancias = matrizDistanciasSort
-#   matrizPopulacao = matrizPopulacaoSort
-
-    
+def roleta():
+    roletaRand = randint(0, 100)
+    i=0
+    soma = 0.0
+#    print(str(roletaRand))
+    for i in range(0, len(matrizPopulacao)):
+#        print(str(listaDistancias[i]))
+        soma += listaDistancias[i]
+        if soma >= roletaRand:
+            return i
+			
+    return 0
     
 #Laço principal até 10.000 interações
-#    for interacoes in range(0, 10000):
-#        teste=interacoes
-    
+for interacoes in range(0, 10000):
+   teste=interacoes
+   
+#Seleção por roleta
+   pai1=randint(0, 9)
+   pai2=randint(0, 9)
+#   print(str(pai1))
+#   print(str(pai2))
+#   print(str(roleta()))
+   
     
     
     
@@ -160,4 +168,5 @@ removerMetade();
 exibeResultados();
 
 
+#print(str(roleta()))
 
