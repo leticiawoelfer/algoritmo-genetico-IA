@@ -116,7 +116,7 @@ def removerMetade():
     del listaDistancias[9:19]        
         
 
-def roleta():
+'''def roleta2():
     roletaRand = randint(0, 100)
     i=0
     soma = 0.0
@@ -139,10 +139,26 @@ for interacoes in range(0, 10000):
 #   print(str(pai1))
 #   print(str(pai2))
 #   print(str(roleta()))
-   
+   '''
     
-    
-    
+def roleta():
+    matrizProbabilidade = [[1,1,21],
+                           [2,22,35],
+                           [3,36,48],
+                           [4,49,59],
+                           [5,60,69],
+                           [6,70,77],
+                           [7,78,85],
+                           [8,86,92],
+                           [9,93,97],
+                           [10,98,100]]
+    listaPais = []
+    sorteados = random.sample(range(1,100),10)
+    print(sorteados)
+    #validar se nenhum apareceu mais de 5 vezes, se não
+    #tem que sortear de novo
+    sorteadosConvert = []
+    '''parou aqui'''
     
     
     
@@ -162,10 +178,13 @@ criarListaDistancias();
 ordenaMatrizes()
 
 '''Remover metade da população'''
-removerMetade();
+removerMetade()
+
+
+roleta2()
 
 '''Exibe resultado em modo grafio'''
-exibeResultados();
+exibeResultados()
 
 
 #print(str(roleta()))
