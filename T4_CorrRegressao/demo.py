@@ -93,4 +93,10 @@ dataset1()
 dataset2()
 dataset3()
 
+"""
+3) Qual dos datasets não é apropriado para regressão linear?
+    dataset 3, porque o valor da variável dependente não cresce
+    em relação a variável independente.
+"""
+
 

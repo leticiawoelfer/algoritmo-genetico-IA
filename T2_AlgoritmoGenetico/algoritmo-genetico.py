@@ -180,8 +180,7 @@ ordenaMatrizes()
 '''Remover metade da população'''
 removerMetade()
 
-
-roleta2()
+roleta()
 
 '''Exibe resultado em modo grafio'''
 exibeResultados()
