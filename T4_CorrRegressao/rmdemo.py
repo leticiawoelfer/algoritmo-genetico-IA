@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 @authors: Douglas, Joana e Leticia
 """
@@ -10,13 +11,11 @@ def lerArquivo():
     with open('data.csv') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         for row in csv_reader:
-            X.append([1,row])
+            row.insert(0, 1)
+            X.append(row)
         
-        for r in X:
-            
 
 X = []
-Y = []
 lerArquivo()
 print(X)
 
