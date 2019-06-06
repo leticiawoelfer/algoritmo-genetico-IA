@@ -10,7 +10,7 @@ def lerArquivo():
         csv_reader = csv.reader(csv_file, delimiter=',')
         for row in csv_reader:
             row.insert(0, 1)
-            vetorPreco.append(row[3])
+            vetorPreco.append(float(row[3]))
             del row[3]
             matrizX.append(row)
 
@@ -48,7 +48,7 @@ lerArquivo()
 #prepara a lista para fazer a correlacao e regressao linear
 tamCasa = []
 for i in range(0, (len(matrizX)-1)):
-    tamCasa.append(matrizX[i][1])
+    tamCasa.append(int(matrizX[i][1]))
 
 correlacao(tamCasa, vetorPreco)
 
