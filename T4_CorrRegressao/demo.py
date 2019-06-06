@@ -95,8 +95,9 @@ dataset3()
 
 """
 3) Qual dos datasets não é apropriado para regressão linear?
-    dataset 3, porque o valor da variável dependente não cresce
-    em relação a variável independente.
+    dataset 2, porque com uma regressão polinomial conseguiria 
+    seguir melhor os valores da base de dados (Aprender).
+    Dessa forma o erro é muito grande.
 """
 
 
