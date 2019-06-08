@@ -3,8 +3,6 @@
 @authors: Douglas, Joana e Leticia
 """
 import matplotlib.pyplot as plt
-import math
-import csv
 import scipy.io as scipy
 import numpy as np
 
@@ -21,6 +19,7 @@ def geraGrafico(matrizData):
 #    plt.title("Correlação:"+str(r)+"  B0:"+str(b0)+"  B1:"+str(b1))
     plt.figure()
 
+#fazendo a função polyfit
 def polyfit(matrizData):
     coefs1 = np.polyfit(matrizData[:,0], matrizData[:,1], 1)
     coefs1 = np.polyfit(matrizData[:,0], matrizData[:,1], 2)
@@ -40,6 +39,10 @@ def polyfit(matrizData):
     ax1.plot(matrizData[:,0], y3,'b')   
     ax1.plot(matrizData[:,0], y8,'y')                                                              
     plt.show()
+    
+#calcular o erro quadratico medio
+    
+    
 
 #geraGrafico(lerBaseDados())
 polyfit((lerBaseDados()))
