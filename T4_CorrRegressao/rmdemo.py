@@ -52,14 +52,13 @@ def geraMatrizTransposta():
         for j in range(0, len(matrizX)):
             linha.append(matrizX[j][i])
         matrizXTrans.append(linha)
-    print(matrizXTrans)
     
 def calcularB():
-    a = np.dot(matrizX, matrizXTrans)
+    a = np.dot(matrizXTrans, matrizX)
     b = np.linalg.inv(a)
-    c = np.dot(vetorPreco,matrizXTrans)
+    c = np.dot(matrizXTrans,vetorPreco)
 
-    print(b*c)
+    matrizB.append(b*c)
     
 def calcularLinhaRegr():
     pass
@@ -87,7 +86,11 @@ print("Correlação Número de quartos e Preço: "+str(corr2))
 matrizXTrans = []
 geraMatrizTransposta()
 
+matrizB = []
 calcularB()
+
+linhaRegrassao = np.dot(matrizX,matrizB);
+print(linhaRegrassao)
 
 calcularLinhaRegr()
 

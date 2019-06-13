@@ -62,12 +62,16 @@ def linhaRegressao(b0, b1, x, y, r):
         resultados.append(b0 + (b1 * num))
     geraGrafico(b0, b1, x, y, r, resultados)
 
+#gera o gráfico
 def geraGrafico(b0, b1, x, y, r, resultados):
     plt.scatter(x, y)
     plt.plot(x,resultados)
     plt.title("Correlação:"+str(r)+"  B0:"+str(b0)+"  B1:"+str(b1))
     plt.figure()
 
+
+#abaixo temos os 3 métodos que processam os 3 datasets solicitados no enunciado
+#ambos calculam a correlação e chamam o método de regressão
 def dataset1():
     x1 = [10,8,13,9,11,14,6,4,12,7,5]
     y1 = [8.04,6.95,7.58,8.81,8.33,9.96,7.24,4.26,10.84,4.82,5.68]
