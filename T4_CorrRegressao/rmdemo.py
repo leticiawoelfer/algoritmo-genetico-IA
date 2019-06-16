@@ -89,6 +89,8 @@ def getLinhaRegressao():
     b = np.dot(matriz, vetorPreco)
     y = np.dot(npMatrizX, b)
     return(y)
+    #Para testar o beta
+#    return(b)
 
 matrizX = []
 vetorPreco = []
@@ -121,9 +123,12 @@ matrizXTrans = np.transpose(npMatrizX)
 #print(linhaRegrassao)
 
 linhaRegrassao = getLinhaRegressao()
-#beta = getLinhaRegressao()
 
-#y1 = beta[0] + beta[1] * npMatrizX[:, 1] + beta[2] * npMatrizX[:, 2] ** 2
+beta = getLinhaRegressao()
+
+# Para testar se o s balores de beta estão ok, comentar a linha 91 e descomentar a linha 93
+y1 = beta[0] + beta[1] * 1650 + beta[2] * 3** 2
+print(y1)
 
 calcularLinhaRegr()
 
