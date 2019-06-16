@@ -82,19 +82,45 @@ def polyfitTeste(matrizData, matrizDataTeste):
     ax1.plot(matrizData[:, 0], y2, 'g')
     ax1.plot(matrizData[:, 0], y3, 'b')
     ax1.plot(matrizData[:, 0], y8, 'y')
+      
 
     plt.show()
 
 
 def tiraGrupoTeste(matrizData, aleatorios):
-    matrizData2 = []
-    matrizDataTeste = []
+#    matrizData2 = []
+#    matrizDataTeste = []
+    matrizDataTeste=np.zeros((4,2), dtype=np.float64)
+    matrizData2=np.zeros((int(len(matrizData)),int(len(matrizData[0]))), dtype=np.float64)
+    
+    print(len(matrizData[0]))
+    
+    count = 0 
     i = 0
     while i < len(matrizData):
         if matrizData[i][0] in aleatorios:
-            matrizDataTeste.append(matrizData[i])
+            linha = []
+            linha.append(matrizData[i])
+#            linha.insert(i,matrizData[i][1])
+#            matrizTemp=np.zeros((1,2), dtype=np.float64)
+#            matrizTemp[0][0]= linha[0]
+#            matrizTemp[0][1]= linha[1]
+            
+#            matrizDataTeste.append(matrizData[i])
+#            matrizDataTeste.append(matrizTemp[0])
+            matrizDataTeste[count][0]= linha[0][0]
+            matrizDataTeste[count][1]= linha[0][1]
+            count=count+1
+#            matrizDataTeste.insert(i,1, matrizData[i][1])
+
         else:
-            matrizData2.append(matrizData[i])
+#            linha = []
+#            linha.insert(i,matrizData[i][0])
+#            linha.insert(i,matrizData[i][1])
+#            matrizData2.append(linha)
+            matrizData2[i][0] = matrizData[i][0]
+            matrizData2[i][1] = matrizData[i][1]
+            
         i += 1
 
     return matrizData2, matrizDataTeste
@@ -157,5 +183,4 @@ aleatorios = geraAleatorios()
 matrizData2, matrizDataTeste = tiraGrupoTeste((lerBaseDados()), aleatorios)
 
 # matrizData2 = 47 pontos para gerar curva
-# matrizDataTeste = 5 pontos para testar a curva (verificar se precisa ajustar estes pontos para obter resultado)
 polyfitTeste(matrizData2, matrizDataTeste)

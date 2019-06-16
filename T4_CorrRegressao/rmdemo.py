@@ -6,6 +6,9 @@ import matplotlib.pyplot as plt
 import math
 import csv
 import numpy as np
+from mpl_toolkits.mplot3d import Axes3D
+
+
 
 def lerArquivo():
     with open('data.csv') as csv_file:
@@ -16,6 +19,8 @@ def lerArquivo():
             row = [int(x) for x in row]
             row.insert(0, 1)
             matrizX.append(row)
+        npMatrizX = np.array([l[:] for l in matrizX])
+    return(npMatrizX)
 
 def correlacao(x, y):
     n = len(x)
@@ -43,7 +48,7 @@ def correlacao(x, y):
     return r;
 
 def preparaLista(posicao, lista):
-    for i in range(0, (len(matrizX)-1)):
+    for i in range(0, (len(matrizX))):
         lista.append(int(matrizX[i][posicao]))
 
 def geraMatrizTransposta():
@@ -59,20 +64,41 @@ def calcularB():
     c = np.dot(matrizXTrans,vetorPreco)
 
     matrizB.append(b*c)
+
     
 def calcularLinhaRegr():
     pass
-#def regressao(x, y, r):
+
+
+def geraGrafico3D():
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    ax.scatter(tamCasa, numQuarts, vetorPreco)
+    ax.set_xlabel("Tamanho")
+    ax.set_ylabel("Numero de quartos")
+    ax.set_zlabel("Preço")
+    ax.set_title("Correlação Tamanho da casa e Preço: "+str(corr1) + "\n" + "Correlação Número de quartos e Preço: "+str(corr2))
+    ax.plot(npMatrizX[:, 1], npMatrizX[:, 2], linhaRegrassao, 'r')
+    plt.show()
+
+def getLinhaRegressao():
+    matriz = np.dot(matrizXTrans, npMatrizX)
+    matriz = matriz.astype(float)
+    matriz = matriz**-1
+    matriz = np.dot(matriz, matrizXTrans)
+    b = np.dot(matriz, vetorPreco)
+    y = np.dot(npMatrizX, b)
+    return(y)
 
 matrizX = []
 vetorPreco = []
-lerArquivo()
+npMatrizX = lerArquivo()
 
 #prepara a lista para fazer a correlacao e regressao linear
 tamCasa = []
 preparaLista(1, tamCasa)    
 corr1 = correlacao(tamCasa, vetorPreco)
-print("Correlação Tamanho da casa e Preço: "+str(corr1))
+#print("Correlação Tamanho da casa e Preço: "+str(corr1))
 #regr = regressao
 
 
@@ -80,20 +106,29 @@ print("Correlação Tamanho da casa e Preço: "+str(corr1))
 numQuarts = []
 preparaLista(2, numQuarts)
 corr2 = correlacao(numQuarts, vetorPreco)
-print("Correlação Número de quartos e Preço: "+str(corr2))
+#print("Correlação Número de quartos e Preço: "+str(corr2))
 
 
-matrizXTrans = []
-geraMatrizTransposta()
 
-matrizB = []
-calcularB()
+#matrizXTrans = []
+#geraMatrizTransposta()
+matrizXTrans = np.transpose(npMatrizX)
 
-linhaRegrassao = np.dot(matrizX,matrizB);
-print(linhaRegrassao)
+
+#matrizB = []
+#calcularB()
+#linhaRegrassao = np.dot(npMatrizX,matrizB)
+#print(linhaRegrassao)
+
+linhaRegrassao = getLinhaRegressao()
+#beta = getLinhaRegressao()
+
+#y1 = beta[0] + beta[1] * npMatrizX[:, 1] + beta[2] * npMatrizX[:, 2] ** 2
 
 calcularLinhaRegr()
 
+
+geraGrafico3D()
 
 
 
