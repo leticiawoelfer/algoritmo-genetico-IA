@@ -7,39 +7,56 @@ Created on Wed May 29 21:28:29 2019
 import matplotlib.pyplot as plt
 import math
 
+#aqui calculamos a correlacao
 def correlacao(x, y):
+    #variavel n contem o tamanho do array x
     n = len(x)
+    
+    #calculando a media de x
     somax = 0
     for numX in x:
         somax = somax + numX
     mediaX = somax / n
     
+    #calculando a media de y
     somay = 0
     for numY in y:
         somay = somay + numY
     mediaY = somay / n
     
-    somaR1 = 0
+    #inicializa os valores que vão ser descobertos abaixo
+    
+    somaR = 0
     somaMediaX = 0
     somaMediaY = 0
+    #para todas as posições de x e y é feito o calculo de 
+    #acordo com a fórmula do enunciado
+    #somaR representa o dividendo da fórmula
+    #somaMediaX, somaMediaY são valores para achar o divisor final
     for i in range(0,n):
-        somaR1 = somaR1 + ((x[i] - mediaX) * (y[i] - mediaY))
+        somaR = somaR + ((x[i] - mediaX) * (y[i] - mediaY))
         somaMediaX = somaMediaX + ((x[i] - mediaX)**2)
         somaMediaY = somaMediaY + ((y[i] - mediaY)**2)
         
     raizQuad = math.sqrt(somaMediaX * somaMediaY)
     
-    r = round((somaR1/raizQuad),4)
+    #agora com todos os valores encontrados, conseguimos calcular o
+    #valor da correcao, e ai retornamos ele pois precisa ser usado a diante.
+    r = round((somaR/raizQuad),4)
     return r;
 
     
 def regressao(x, y, r):
+    #variavel n contem o tamanho do array x
     n = len(x)
+    
+    #calculando a media de x
     somax = 0
     for numX in x:
         somax = somax + numX
     mediaX = somax / n
     
+    #calculando a media de x
     somay = 0
     for numY in y:
         somay = somay + numY
@@ -47,23 +64,27 @@ def regressao(x, y, r):
     
     soma1 = 0
     soma2 = 0
+    #calculando o B1
     for i in range(0,n):
         soma1 = soma1 + ((x[i] - mediaX) * (y[i] - mediaY))
         soma2 = soma2 + ((x[i] - mediaX)**2)
     
     b1 = round((soma1 / soma2),4)
+    # com o B1 canculado, conseguimos calcular o B2
     b0 = round((mediaY - (b1 * mediaX)),4)
+    #tendo esses valores, agora é possível calclar a linha de regressao
     linhaRegressao(b0, b1, x, y, r)
     
     
 def linhaRegressao(b0, b1, x, y, r):
     resultados=[]
+    #qplicando a formula para encontrar a linha de regressao
     for num in x:
         resultados.append(b0 + (b1 * num))
     geraGrafico(b0, b1, x, y, r, resultados)
 
-#gera o gráfico
 def geraGrafico(b0, b1, x, y, r, resultados):
+    #com todos os valores calculados, esse metodo trona isso visual
     plt.scatter(x, y)
     plt.plot(x,resultados)
     plt.title("Correlação:"+str(r)+"  B0:"+str(b0)+"  B1:"+str(b1))
