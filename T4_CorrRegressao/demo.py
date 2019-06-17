@@ -24,8 +24,7 @@ def correlacao(x, y):
         somay = somay + numY
     mediaY = somay / n
     
-    #inicializa os valores que vão ser descobertos abaixo
-    
+    #inicializa os valores que vão ser descobertos abaixo    
     somaR = 0
     somaMediaX = 0
     somaMediaY = 0
