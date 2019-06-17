@@ -113,6 +113,8 @@ def dataset3():
     r = correlacao(x3, y3)
     regressao(x3, y3, r)
 
+
+''' INÍCIO '''
 dataset1()
 dataset2()
 dataset3()

@@ -18,9 +18,6 @@ def lerBaseDados():
 
 def geraGrafico(matrizData):
     plt.scatter(matrizData[:, 0], matrizData[:, 1])
-
-    #    plt.plot(x,resultados)
-    #    plt.title("Correlação:"+str(r)+"  B0:"+str(b0)+"  B1:"+str(b1))
     plt.figure()
 
 
@@ -125,6 +122,7 @@ def tiraGrupoTeste(matrizData, aleatorios):
 
     return matrizData2, matrizDataTeste
 
+
 # calcular o erro quadratico medio
 def calcErroQuadMedio(matriz_dados, y1, y2, y3, y8):
     erro_medio = []
@@ -157,30 +155,22 @@ def calcSomaResiduo(matriz_dados, y):
 
 
 def calcResiduo(observado, estimado):
-
     residuo = (observado - estimado) ** 2
-
     return residuo
+
 
 def geraAleatorios():
     aleatorios = []
-    aleatorios.append(round(uniform(0, 5.2), 1))
-    aleatorios.append(round(uniform(0, 5.2), 1))
-    aleatorios.append(round(uniform(0, 5.2), 1))
-    aleatorios.append(round(uniform(0, 5.2), 1))
-    aleatorios.append(round(uniform(0, 5.2), 1))
-
-    print(aleatorios)
-
+    for i in range(0,4):
+        aleatorios.append(round(uniform(0, 5.2), 1))
     return aleatorios
 
+''' INÍCIO '''
+polyfit(lerBaseDados())
 
-# geraGrafico(lerBaseDados())
-polyfit((lerBaseDados()))
-
-# dividindo os dados aleatoriamente gerando 2 matrizes
+# dividindo os dados aleatoriamente gerando as duas matrizes
 aleatorios = geraAleatorios()
 matrizData2, matrizDataTeste = tiraGrupoTeste((lerBaseDados()), aleatorios)
 
 # matrizData2 = 47 pontos para gerar curva
-polyfitTeste(matrizData2, matrizDataTeste)
+#polyfitTeste(matrizData2, matrizDataTeste)
